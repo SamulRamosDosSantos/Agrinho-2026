@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrinho 2026 - O Eco do Campo</title>
+    <style>
+        /* Reset e Configurações Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f7f5f0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-left: 1px solid #d3d3d3;
+            border-right: 1px solid #d3d3d3;
+            padding: 0 30px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        /* Cabeçalho do Jornal (Masthead) */
+        header {
+            text-align: center;
+            border-bottom: 4px double #333;
+            padding: 25px 0 15px 0;
+            margin-bottom: 20px;
+        }
+
+        .journal-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            font-family: Arial, sans-serif;
+            color: #555;
+        }
+
+        .journal-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin: 15px 0;
+            color: #1a3c1e; /* Verde escuro jornalístico */
+        }
+
+        .journal-motto {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        /* Destaque do Tema Central */
+        .theme-banner {
+            background-color: #f2f5f3;
+            border: 1px solid #1a3c1e;
+            padding: 12px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #1a3c1e;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Estrutura de Notícias (Grid de Jornal) */
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .journal-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Artigo Principal */
+        .main-article {
+            border-right: 1px solid #e0e0e0;
+            padding-right: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .main-article {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 1px solid #e0e0e0;
+                padding-bottom: 30px;
+            }
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            line-height: 1.1;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        .article-subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 8px;
+        }
+
+        /* Layout em colunas de jornal para o texto */
+        .article-body {
+            column-count: 2;
+            column-gap: 30px;
+            text-align: justify;
+            text-indent: 20px;
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 600px) {
+            .article-body {
+                column-count: 1;
+            }
+        }
+
+        .article-body p {
+            margin-bottom: 15px;
+        }
+
+        /* Efeito de Letra Capitular (Letra grande no início) */
+        .article-body p::first-letter {
+            font-size: 2.5rem;
+            float: left;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 8px;
+            padding-left: 3px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+
+        .article-body p + p::first-letter {
+            font-size: inherit;
+            float: none;
+            padding: 0;
+        }
+
+        /* Destaque (Pull Quote) */
+        .pull-quote {
+            grid-column: 1 / -1;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #1a3c1e;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+            margin: 25px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Barra Lateral (Opinião / Infográficos) */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-box {
+            background-color: #fcfcfc;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+        }
+
+        .sidebar-title {
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #1a3c1e;
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+            color: #1a3c1e;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-item {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-item h4 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .sidebar-item p {
+            font-size: 0.95rem;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* Rodapé */
+        footer {
+            border-top: 4px double #333;
+            padding: 15px 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="journal-meta">
+                <div>Ano XXXI - Nº 2026</div>
+                <div>Paraná, Brasil</div>
+                <div>Edição Especial Agrinho</div>
+            </div>
+            <h1 class="journal-title">O Eco do Campo</h1>
+            <p class="journal-motto">“Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente”</p>
+        </header>
+
+        <div class="theme-banner">
+            Foco Logístico: O Gargalo no Escoamento de Grãos no Brasil
+        </div>
+
+        <div class="main-content">
+            
+            <article class="main-article">
+                <h2 class="article-title">Desafio de Gigante: A corrida contra o tempo e a precariedade no transporte da safra nacional</h2>
+                <p class="article-subtitle">Apesar da produtividade recorde nos campos, a falta de infraestrutura ideal e a forte dependência do modal rodoviário encarecem e ameaçam o ritmo do agronegócio brasileiro.</p>
+                
+                <div class="article-meta">
+                    Por <strong>Redação Agrinho</strong> | Atualizado em 2026
+                </div>
+
+                <div class="article-body">
+                    <p>O agronegócio brasileiro destaca-se globalmente por sua alta produtividade, registrando colheitas que somam milhões de toneladas de grãos a cada ano. Contudo, o grande desafio subsequente a essa robusta produção é a eficiência logística necessária para transportá-la com agilidade até o destino final.</p>
+                    
+                    <p>Atualmente, o país utiliza uma matriz de transporte multimodal para realizar esse escoamento, envolvendo o modal ferroviário (trens), o rodoviário (caminhões) e o aquaviário (navios e barcaças). Apesar disso, surge um questionamento crucial: a infraestrutura e a tecnologia disponíveis hoje são suficientes para suprir tamanha demanda?</p>
+                    
+                    <p>A realidade mostra que ainda há um longo caminho a percorrer. O Brasil enfrenta sérios gargalos logísticos no escoamento de grãos. O principal entrave está na forte dependência do setor rodoviário — que sofre com estradas precárias e altos custos de frete —, somada à subutilização de ferrovias e hidrovias, que seriam opções mais baratas e sustentáveis.</p>
+                </div>
+
+                <div class="pull-quote">
+                    “Somente equilibrando a capacidade de produção com uma infraestrutura de transporte eficiente será possível garantir a competitividade no mercado internacional.”
+                </div>
+
+                <div class="article-body" style="column-count: 1; text-indent: 20px;">
+                    <p>Portanto, para que o Brasil continue a expandir sua força agrícola de maneira sustentável, é urgente modernizar sua logística. Isso exige investimentos massivos na ampliação da malha ferroviária e na eficiência dos portos, além da integração tecnológica entre os modais. O futuro do equilíbrio econômico e ambiental depende dessas ações imediatas.</p>
+                </div>
+            </article>
+
+            <aside class="sidebar">
+                <div class="sidebar-box">
+                    <h3 class="sidebar-title">Análise de Cenário</h3>
+                    <div class="sidebar-item">
+                        <h4>A Dependência do Asfalto</h4>
+                        <p>O frete rodoviário, embora cubra a maior parte do território, encarece o produto final devido à falta de manutenção das rodovias e custos de combustível.</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3 class="sidebar-title">Alternativas Verdes</h3>
+                    <div class="sidebar-item">
+                        <h4>Ferrovias e Hidrovias</h4>
+                        <p>A ampliação de malhas sobre trilhos e o uso de rios navegáveis surgem como as respostas mais baratas e de menor impacto ambiental para o setor.</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-box" style="background-color: #1a3c1e; color: #fff;">
+                    <h3 class="sidebar-title" style="color: #fff; border-color: #fff;">Editorial</h3>
+                    <p style="font-size: 0.95rem; font-style: italic;">O equilíbrio entre produzir em larga escala e preservar o meio ambiente exige inteligência geográfica e conexões eficientes.</p>
+                </div>
+            </aside>
+
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Concurso Agrinho. Todos os direitos reservados. Projeto Educacional “Agro forte, futuro sustentável”.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
